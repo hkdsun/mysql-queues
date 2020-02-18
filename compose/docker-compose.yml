@@ -16,7 +16,7 @@ services:
       --max-connections=500
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    cpus: 3
+    cpus: 2
     ulimits:
       nproc: 65535
       nofile:

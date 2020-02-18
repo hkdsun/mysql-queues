@@ -24,9 +24,15 @@ require("lua/sysbench/oltp_common")
 -- sysbench.hooks.report_intermediate = sysbench.report_json
 
 function prepare_statements()
-   prepare_burn_cpus()
+  sysbench.opt.point_selects=1
+  prepare_point_selects()
+  prepare_burn_cpus()
 end
 
 function event()
-   execute_burn_cpus()
+  if math.random() < 0.5 then
+    execute_burn_cpus()
+  else
+    execute_point_selects()
+  end
 end
