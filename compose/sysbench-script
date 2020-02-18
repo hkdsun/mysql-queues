@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sysbench --time=10 \
+  --mysql-debug=off \
+  --histogram=on \
+  --threads=16 \
+  --mysql-host=127.0.0.1 \
+  --mysql-port=33061 \
+  --mysql-user=root \
+  lua/sysbench/oltp_burn_cpus.lua run

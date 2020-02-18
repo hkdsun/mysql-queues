@@ -1,0 +1,26 @@
+version: "2.2"
+services:
+  mysql-m1:
+    image: "percona:5.7-jessie"
+    volumes:
+      - /var/lib/mysql
+    command: --server-id=1
+      --log-bin=mysql-bin
+      --binlog-format=ROW
+      --sync-binlog=1
+      --log-slave-updates=ON
+      --gtid-mode=ON
+      --enforce-gtid-consistency=ON
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max-connections=500
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    cpus: 3
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    ports:
+      - "33061:3306"
