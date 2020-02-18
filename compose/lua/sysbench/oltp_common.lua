@@ -243,7 +243,7 @@ end
 local t = sysbench.sql.type
 local stmt_defs = {
    burn_cpus = {
-      "select benchmark(9999999999, md5('runs forever'))",
+      "select benchmark(9999, md5('runs forever'))",
    },
    point_selects = {
       "SELECT c FROM sbtest%u WHERE id=?",

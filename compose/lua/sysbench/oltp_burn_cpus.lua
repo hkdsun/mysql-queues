@@ -19,7 +19,7 @@
 -- OLTP Point Select benchmark
 -- ----------------------------------------------------------------------
 
-require("oltp_common")
+require("lua/sysbench/oltp_common")
 
 function prepare_statements()
    prepare_burn_cpus()

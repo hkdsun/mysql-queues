@@ -3,7 +3,7 @@
 sysbench --time=10 \
   --mysql-debug=off \
   --histogram=on \
-  --threads=16 \
+  --threads=32 \
   --mysql-host=127.0.0.1 \
   --mysql-port=33061 \
   --mysql-user=root \
