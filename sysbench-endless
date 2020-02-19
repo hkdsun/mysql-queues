@@ -3,14 +3,14 @@
 ulimit -n 10000
 # --histogram=on \
 
-sysbench --time=10 \
+sysbench --time=0 \
   --report-interval=1 \
   --mysql-debug=off \
-  --threads=4 \
+  --threads=16 \
   --db-ps-mode=disable \
   --verbosity=3 \
   --mysql-host=127.0.0.1 \
   --mysql-port=33062 \
   --mysql-user=root \
-  --percentile=95 \
-  lua/sysbench/oltp_burn_cpus_high_priority.lua run
+  --percentile=75 \
+  lua/sysbench/oltp_point_select.lua run

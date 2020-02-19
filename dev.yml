@@ -13,3 +13,11 @@ commands:
   prepare:
     desc: prepare the mysql db
     run: ./prepare-mysql
+
+  stats:
+    desc: show docker stats
+    run: docker stats
+
+  restart:
+    desc: restart proxysql
+    run: docker restart mysql-queues_proxysql_1

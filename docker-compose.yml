@@ -16,11 +16,41 @@ services:
       --max-connections=500
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    cpus: 2
+    # cpus: 2
     ulimits:
-      nproc: 65535
+      nproc: 1024
       nofile:
         soft: 20000
         hard: 40000
     ports:
       - "33061:3306"
+
+  proxysql-1:
+    image: "gcr.io/shopify-docker-images/apps/production/proxysql:latest"
+    command: proxysql -f --idle-threads --initial
+    volumes:
+      - ./config/proxysql.cnf:/etc/proxysql.cnf
+      - ./config/my.cnf:/root/.my.cnf
+    ulimits:
+      nproc: 1024
+      nofile:
+        soft: 20000
+        hard: 40000
+    # cpus: 2
+    ports:
+      - "33062:3306"
+
+  proxysql-2:
+    image: "gcr.io/shopify-docker-images/apps/production/proxysql:latest"
+    command: proxysql -f --idle-threads --initial
+    volumes:
+    - ./config/proxysql.cnf:/etc/proxysql.cnf
+    - ./config/my.cnf:/root/.my.cnf
+    ulimits:
+      nproc: 1024
+      nofile:
+        soft: 20000
+        hard: 40000
+    # cpus: 2
+    ports:
+      - "33063:3306"

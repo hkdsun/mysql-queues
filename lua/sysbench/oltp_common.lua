@@ -242,6 +242,9 @@ end
 
 local t = sysbench.sql.type
 local stmt_defs = {
+   burn_cpus_high_priority = {
+     "select benchmark(1, md5('high priority'))",
+   },
    burn_cpus = {
       "select benchmark(1, md5('random string'))",
    },
@@ -316,6 +319,7 @@ end
 
 function prepare_burn_cpus()
   prepare_for_each_table("burn_cpus")
+  prepare_for_each_table("burn_cpus_high_priority")
 end
 
 function prepare_point_selects()
@@ -427,10 +431,14 @@ function execute_point_selects()
    end
 end
 
-function execute_burn_cpus()
+function execute_burn_cpus(high_priority)
   local tnum = get_table_num()
 
-  stmt[tnum].burn_cpus:execute()
+  if high_priority then
+    stmt[tnum].burn_cpus_high_priority:execute()
+  else
+    stmt[tnum].burn_cpus:execute()
+  end
 end
 
 local function execute_range(key)
