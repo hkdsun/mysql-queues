@@ -243,10 +243,10 @@ end
 local t = sysbench.sql.type
 local stmt_defs = {
    burn_cpus_high_priority = {
-     "select benchmark(1, md5('high priority'))",
+     "select benchmark(10, md5('high priority'))",
    },
    burn_cpus = {
-      "select benchmark(1, md5('random string'))",
+      "select benchmark(10, md5('random string'))",
    },
    point_selects = {
       "SELECT c FROM sbtest%u WHERE id=?",
