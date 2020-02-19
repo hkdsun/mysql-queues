@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mysql -u root -h 127.0.0.1 -P 33061 -e 'CREATE DATABASE sbtest'
+
+sysbench --mysql-user=root --mysql-host=127.0.0.1 --mysql-port=33061 lua/sysbench/oltp_point_select.lua prepare

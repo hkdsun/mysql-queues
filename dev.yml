@@ -1,0 +1,15 @@
+up:
+  - custom:
+      name: MySQL
+      met?: docker-compose up -d
+      meet: echo 'docker-compose containers failed to start'; false
+      down: docker-compose stop
+
+commands:
+  benchmark-simple:
+    desc: run the sysbench benchmarks
+    run: ./sysbench-script
+
+  prepare:
+    desc: prepare the mysql db
+    run: ./prepare-mysql
